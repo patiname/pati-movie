@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Content } from "./Content";
 import { Helmet } from "react-helmet-async";
+// import { Testing } from "../../components/Testing";
 
 const Main = styled.section`
   width: 100%;
@@ -89,6 +90,9 @@ export const Home = () => {
       <Helmet>
         <title>홈 | PaitMovie</title>
       </Helmet>
+
+      {/* <Testing /> */}
+
       <Main
         style={{
           backgroundImage: `url(https://image.tmdb.org/t/p/original/${
