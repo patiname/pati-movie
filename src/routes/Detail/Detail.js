@@ -9,6 +9,10 @@ const ConWrap = styled.div`
   padding-top: 120px;
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    padding-top: 80px;
+  }
 `;
 
 const CoverImg = styled.div`
@@ -16,22 +20,39 @@ const CoverImg = styled.div`
   height: 700px;
   background-size: cover;
   background-position: center;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    height: 60vh;
+  }
 `;
 
 const Con = styled.div`
   width: 46%;
   height: 700px;
   padding: 50px;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    height: auto;
+    padding: 50px 0 0 0;
+  }
 `;
 
 const ConTitle = styled.div`
   font-size: 60px;
   font-weight: 700;
+  @media screen and (max-width: 500px) {
+    font-size: 40px;
+    line-height: 55px;
+  }
 `;
 
 const Release = styled.div`
   margin: 30px 0 20px 0;
   font-size: 20px;
+  @media screen and (max-width: 500px) {
+    margin: 20px 0;
+    font-size: 16px;
+  }
 `;
 
 const Genres = styled.div``;
@@ -47,6 +68,11 @@ const Desc = styled.div`
   font-weight: 300;
   opacity: 0.7;
   margin-top: 50px;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    font-size: 16px;
+    line-height: 28px;
+  }
 `;
 
 export const Detail = () => {

@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet-async";
 
 const Main = styled.section`
   width: 100%;
-  height: 55vh;
+  height: 75vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
