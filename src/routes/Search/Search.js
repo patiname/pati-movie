@@ -8,22 +8,36 @@ import { Container } from "../../components/Container";
 
 const ConWrap = styled.div`
   margin-top: 80px;
+  @media screen and (max-width: 500px) {
+    margin-top: 100px;
+  }
 `;
 
 const Title = styled.h3`
   font-size: 50px;
   font-weight: 700;
   margin: 50px 0;
+  @media screen and (max-width: 500px) {
+    font-size: 35px;
+  }
 `;
 
-const Form = styled.form``;
+const Form = styled.form`
+  width: 90%;
+`;
 
 const Input = styled.input`
   all: unset;
   width: 100%;
-  padding: 20px 0 20px 20px;
+  padding: 20px;
   border: 1px solid #333;
   font-size: 18px;
+  @media screen and (max-width: 500px) {
+    padding: 10px;
+  }
+  &::placeholder {
+    font-size: 14px;
+  }
 `;
 
 const Con = styled.div`
@@ -33,6 +47,9 @@ const Con = styled.div`
   row-gap: 50px;
   column-gap: 20px;
   margin-top: 100px;
+  @media screen and (max-width: 500px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 const ItemWrap = styled.div``;
@@ -42,11 +59,17 @@ const Bg = styled.div`
   height: 200px;
   background-size: cover;
   background-position: center;
+  @media screen and (max-width: 500px) {
+    height: 100px;
+  }
 `;
 
 const ItemTitle = styled.div`
   font-size: 18px;
   margin-top: 10px;
+  @media screen and (max-width: 500px) {
+    font-size: 14px;
+  }
 `;
 
 export const Search = () => {

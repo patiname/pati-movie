@@ -4,7 +4,7 @@ import reset from "styled-reset";
 export const GlobalStyles = createGlobalStyle`
     ${reset}
 
-    *{ box-sizing:border-box}
+    *{ box-sizing:border-box;}
 
     a{
         text-decoration: none;
