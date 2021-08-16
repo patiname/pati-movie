@@ -72,8 +72,19 @@ const ItemTitle = styled.div`
   }
 `;
 
+const NoSearch = styled.div`
+  width: 100%;
+  font-size: 32px;
+  text-align: center;
+  margin-top: 100px;
+  @media screen and (max-width: 500px) {
+    font-size: 20px;
+  }
+`;
+
 export const Search = () => {
   const [search, setSearch] = useState("");
+  const [noSearch, setNoSearch] = useState("");
   const { register, getValues, handleSubmit } = useForm({
     mode: "onChange",
   });
@@ -81,11 +92,21 @@ export const Search = () => {
   const onSubmit = async () => {
     const { term } = getValues();
 
-    if (term !== "") {
-      const {
-        data: { results },
-      } = await moviesApi.search(term);
-      setSearch(results);
+    try {
+      if (term !== "") {
+        const {
+          data: { results },
+        } = await moviesApi.search(term);
+
+        if (results.length === 0) {
+          setNoSearch("검색 결과가 없습니다.. 🤔");
+        } else {
+          setNoSearch("");
+          setSearch(results);
+        }
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -106,21 +127,25 @@ export const Search = () => {
           />
         </Form>
 
-        <Con>
-          {search &&
-            search.map((term) => (
-              <Link to={`/detail/${term.id}`} key={term.id}>
-                <ItemWrap>
-                  <Bg
-                    style={{
-                      backgroundImage: `url(https://image.tmdb.org/t/p/original/${term.backdrop_path})`,
-                    }}
-                  />
-                  <ItemTitle>{term.title}</ItemTitle>
-                </ItemWrap>
-              </Link>
-            ))}
-        </Con>
+        {noSearch ? (
+          <NoSearch>{noSearch}</NoSearch>
+        ) : (
+          <Con>
+            {search &&
+              search.map((term) => (
+                <Link to={`/detail/${term.id}`} key={term.id}>
+                  <ItemWrap>
+                    <Bg
+                      style={{
+                        backgroundImage: `url(https://image.tmdb.org/t/p/original/${term.backdrop_path})`,
+                      }}
+                    />
+                    <ItemTitle>{term.title}</ItemTitle>
+                  </ItemWrap>
+                </Link>
+              ))}
+          </Con>
+        )}
       </ConWrap>
     </Container>
   );
