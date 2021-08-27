@@ -13,6 +13,11 @@ export const moviesApi = {
   upComing: () => api.get("movie/upcoming"),
   popular: () => api.get("movie/popular"),
   movieDetail: (id) => api.get(`movie/${id}`),
+  video: (id) => api.get(`movie/${id}/videos`),
   search: (term) =>
-    api.get("search/movie", { params: { query: encodeURIComponent(term) } }),
+    api.get("search/movie", {
+      params: {
+        query: encodeURIComponent(term),
+      },
+    }),
 };

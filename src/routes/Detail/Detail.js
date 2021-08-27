@@ -26,6 +26,11 @@ const CoverImg = styled.div`
   }
 `;
 
+const Video = styled.iframe`
+  width: 52%;
+  height: 700px;
+`;
+
 const Con = styled.div`
   width: 46%;
   height: 700px;
@@ -77,6 +82,7 @@ const Desc = styled.div`
 
 export const Detail = () => {
   const params = useParams();
+  const [video, setVideo] = useState();
   const [detail, setDetail] = useState();
 
   useEffect(() => {
@@ -84,11 +90,18 @@ export const Detail = () => {
       try {
         const { data: movieDetail } = await moviesApi.movieDetail(params.id);
         setDetail(movieDetail);
+
+        const {
+          data: { results: videoData },
+        } = await moviesApi.video(params.id);
+        // console.log(results.length > 0 ? results[0].key : false);
+        videoData.length > 0 ? setVideo(videoData[0].key) : setVideo("");
       } catch (error) {}
     };
     movieDetailData();
   }, [params]);
-
+  // console.log(detail);
+  console.log(video);
   return (
     <div>
       <Helmet>
@@ -96,13 +109,40 @@ export const Detail = () => {
       </Helmet>
       <Container>
         <ConWrap>
-          <CoverImg
+          {/* <CoverImg
             style={{
               backgroundImage: `url(https://image.tmdb.org/t/p/original/${
                 detail && detail.backdrop_path
               })`,
             }}
-          />
+          /> */}
+
+          {/* <Video
+            src={`https://www.youtube.com/embed/${video}`}
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          /> */}
+
+          {video === "" ? (
+            <CoverImg
+              style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/original/${
+                  detail && detail.backdrop_path
+                })`,
+              }}
+            />
+          ) : (
+            <Video
+              src={`https://www.youtube.com/embed/${video}`}
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            />
+          )}
+
           <Con>
             <ConTitle>{detail && detail.title}</ConTitle>
             <Release>개봉일: {detail && detail.release_date}</Release>

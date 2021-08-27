@@ -137,7 +137,11 @@ export const Search = () => {
                   <ItemWrap>
                     <Bg
                       style={{
-                        backgroundImage: `url(https://image.tmdb.org/t/p/original/${term.backdrop_path})`,
+                        backgroundImage: `${
+                          term.backdrop_path
+                            ? `url(https://image.tmdb.org/t/p/original/${term.backdrop_path})`
+                            : "url(https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg)"
+                        }`,
                       }}
                     />
                     <ItemTitle>{term.title}</ItemTitle>
