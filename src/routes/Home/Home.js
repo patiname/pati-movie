@@ -26,7 +26,7 @@ const TitleWrap = styled.div`
   padding: 200px 0 0 80px;
   @media screen and (max-width: 500px) {
     width: 100%;
-    padding: 250px 15px 0 15px;
+    padding: 200px 15px 0 15px;
   }
 `;
 
@@ -69,6 +69,9 @@ const More = styled.div`
     color: white;
     border: none;
   }
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 `;
 
 const MainDetail = styled.div`
@@ -85,7 +88,6 @@ const Item = styled.div`
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
-  padding-right: 30px;
 `;
 
 const DetailTitle = styled.div`
@@ -182,7 +184,7 @@ export const Home = () => {
     });
   };
 
-  console.log("현재상영", nowPlaying);
+  /* console.log("현재상영", nowPlaying); */
   // console.log("업커밍", upComing);
   // console.log("인기", popular);
   // console.log(nowPlaying[0].backdrop_path);
