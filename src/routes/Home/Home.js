@@ -53,10 +53,42 @@ const SubTitle = styled.p`
   }
 `;
 
+const More = styled.div`
+  width: 170px;
+  height: 50px;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  transition: 0.5s;
+  cursor: pointer;
+  &:hover {
+    background-color: #1d1d1d;
+    color: white;
+    border: none;
+  }
+`;
+
+const MainDetail = styled.div`
+  height: ${(props) => props.height};
+  margin: 80px 0 0 80px;
+  overflow: hidden;
+  transition: 0.2s;
+`;
+
+const DetailTitle = styled.div`
+  font-size: 70px;
+  font-weight: 700;
+  line-height: 90px;
+`;
+
 export const Home = () => {
   const [nowPlaying, setNowPlaying] = useState();
   const [upComing, setUpComing] = useState();
   const [popular, setpPopular] = useState();
+  const [showDetail, setShowDetail] = useState();
+  const [num, setNum] = useState(0);
 
   useEffect(() => {
     const movieData = async () => {
@@ -80,11 +112,29 @@ export const Home = () => {
     movieData();
   }, []);
 
+  const onClickMore = () => {
+    if (num === 0) {
+      setShowDetail("80vh");
+      setNum(num + 1);
+    } else if (num === 1) {
+      setShowDetail("0");
+      setNum(num - 1);
+    }
+
+    window.scrollTo({
+      top: 200,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
   // console.log("현재상영", nowPlaying);
   // console.log("업커밍", upComing);
   // console.log("인기", popular);
   // console.log(nowPlaying[0].backdrop_path);
 
+  console.log(showDetail);
+  console.log(num);
   return (
     <div>
       <Helmet>
@@ -105,8 +155,16 @@ export const Home = () => {
           <SubTitle>
             {nowPlaying && nowPlaying[0].overview.slice(0, 50) + "..."}
           </SubTitle>
+          <More onClick={onClickMore}>더 보기</More>
         </TitleWrap>
       </Main>
+
+      {nowPlaying && (
+        <MainDetail height={showDetail}>
+          <DetailTitle>{nowPlaying && nowPlaying[0].title}</DetailTitle>
+        </MainDetail>
+      )}
+
       <Container>
         <Content title={"현재 상영 영화"} movie={nowPlaying} />
 

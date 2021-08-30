@@ -25,14 +25,15 @@ import styled from "styled-components";
 //   margin-top: 100px;
 // `;
 
-// export const Testing = () => {
-//   const textOne = () => console.log("text one");
-//   const [text, setText] = useState(0);
-//   const onClick = () => {
-//     console.log("click");
-//     setText(text + 1);
-//   };
+/* export const Testing = () => {
+  const textOne = () => console.log("textOne");
+  const [textTwo, setTextTwo] = useState(0);
+  const onClick = () => {
+    setTextTwo(textTwo + 1);
+    console.log(textTwo);
+  };
 
-//   useEffect(() => textOne(), [text]);
-//   return <Button onClick={onClick}>버튼</Button>;
-// };
+  useEffect(() => textOne(), [textTwo]);
+  return <Button onClick={onClick}>버튼</Button>;
+};
+ */

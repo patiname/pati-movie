@@ -101,7 +101,7 @@ export const Detail = () => {
     movieDetailData();
   }, [params]);
   // console.log(detail);
-  console.log(video);
+
   return (
     <div>
       <Helmet>

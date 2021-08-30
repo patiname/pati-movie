@@ -60,12 +60,8 @@ export const Content = ({ title, movie }) => {
       <Swiper navigation {...params}>
         {movie &&
           movie.map((now) => (
-            <SwiperSlide
-              className="swiper-container"
-              key={now.id}
-              /* style={{ width: "360px" }} */
-            >
-              <Link to={{ pathname: `/detail/${now.id}` }}>
+            <SwiperSlide className="swiper-container" key={now.id}>
+              <Link className="bgLink" to={{ pathname: `/detail/${now.id}` }}>
                 <ConBg
                   style={{
                     backgroundImage: `url(https://image.tmdb.org/t/p/original/${
@@ -73,7 +69,7 @@ export const Content = ({ title, movie }) => {
                     })`,
                   }}
                 />
-                <ConTitle>{now.title}</ConTitle>
+                <ConTitle className="title">{now.title}</ConTitle>
               </Link>
             </SwiperSlide>
           ))}
