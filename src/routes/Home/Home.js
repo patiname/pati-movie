@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Content } from "./Content";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 // import { Testing } from "../../components/Testing";
 
 const Main = styled.section`
@@ -75,19 +76,72 @@ const MainDetail = styled.div`
   margin: 80px 0 0 80px;
   overflow: hidden;
   transition: 0.2s;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Item = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  padding-right: 30px;
 `;
 
 const DetailTitle = styled.div`
   font-size: 70px;
   font-weight: 700;
   line-height: 90px;
+  margin-bottom: 30px;
+`;
+
+const Vote = styled.h4`
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 700;
+`;
+
+const Release = styled.h4`
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 700;
+`;
+
+const Desc = styled.p`
+  margin-top: 30px;
+  font-size: 18px;
+  line-height: 1.8;
+  opacity: 0.8;
+`;
+
+const MoreVideo = styled.div`
+  width: 170px;
+  height: 50px;
+  background-color: crimson;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  transition: 0.5s;
+  cursor: pointer;
+  :hover {
+    opacity: 0.8;
+  }
+`;
+
+const DetailBg = styled.div`
+  width: 70%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
 `;
 
 export const Home = () => {
   const [nowPlaying, setNowPlaying] = useState();
   const [upComing, setUpComing] = useState();
   const [popular, setpPopular] = useState();
-  const [showDetail, setShowDetail] = useState();
+  const [showDetail, setShowDetail] = useState("0");
   const [num, setNum] = useState(0);
 
   useEffect(() => {
@@ -128,13 +182,10 @@ export const Home = () => {
     });
   };
 
-  // console.log("현재상영", nowPlaying);
+  console.log("현재상영", nowPlaying);
   // console.log("업커밍", upComing);
   // console.log("인기", popular);
   // console.log(nowPlaying[0].backdrop_path);
-
-  console.log(showDetail);
-  console.log(num);
   return (
     <div>
       <Helmet>
@@ -161,7 +212,22 @@ export const Home = () => {
 
       {nowPlaying && (
         <MainDetail height={showDetail}>
-          <DetailTitle>{nowPlaying && nowPlaying[0].title}</DetailTitle>
+          <Item>
+            <DetailTitle>{nowPlaying && nowPlaying[0].title}</DetailTitle>
+            <Vote>평점 : {nowPlaying[0].vote_average} 점</Vote>
+            <Release>개봉일 : {nowPlaying[0].release_date}</Release>
+            <Desc>{nowPlaying[0].overview}</Desc>
+            <Link to={`/detail/${nowPlaying[0].id}`}>
+              <MoreVideo>예고편 보기</MoreVideo>
+            </Link>
+          </Item>
+          <DetailBg
+            style={{
+              backgroundImage: `url(https://image.tmdb.org/t/p/original/${
+                nowPlaying && nowPlaying[0].backdrop_path
+              })`,
+            }}
+          />
         </MainDetail>
       )}
 
