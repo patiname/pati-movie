@@ -29,6 +29,10 @@ const CoverImg = styled.div`
 const Video = styled.iframe`
   width: 52%;
   height: 700px;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    height: 400px;
+  }
 `;
 
 const Con = styled.div`
@@ -109,22 +113,6 @@ export const Detail = () => {
       </Helmet>
       <Container>
         <ConWrap>
-          {/* <CoverImg
-            style={{
-              backgroundImage: `url(https://image.tmdb.org/t/p/original/${
-                detail && detail.backdrop_path
-              })`,
-            }}
-          /> */}
-
-          {/* <Video
-            src={`https://www.youtube.com/embed/${video}`}
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          /> */}
-
           {video === "" ? (
             <CoverImg
               style={{
