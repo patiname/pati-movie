@@ -195,51 +195,52 @@ export const Home = () => {
       </Helmet>
 
       {/* <Testing /> */}
-
-      <Main
-        style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/original/${
-            nowPlaying && nowPlaying[0].backdrop_path
-          })`,
-        }}
-      >
-        <TitleWrap>
-          <Title>{nowPlaying && nowPlaying[0].title}</Title>
-          <SubTitle>
-            {nowPlaying && nowPlaying[0].overview.slice(0, 50) + "..."}
-          </SubTitle>
-          <More onClick={onClickMore}>더 보기</More>
-        </TitleWrap>
-      </Main>
-
       {nowPlaying && (
-        <MainDetail height={showDetail}>
-          <Item>
-            <DetailTitle>{nowPlaying && nowPlaying[0].title}</DetailTitle>
-            <Vote>평점 : {nowPlaying[0].vote_average} 점</Vote>
-            <Release>개봉일 : {nowPlaying[0].release_date}</Release>
-            <Desc>{nowPlaying[0].overview}</Desc>
-            <Link to={`/detail/${nowPlaying[0].id}`}>
-              <MoreVideo>예고편 보기</MoreVideo>
-            </Link>
-          </Item>
-          <DetailBg
+        <>
+          <Main
             style={{
               backgroundImage: `url(https://image.tmdb.org/t/p/original/${
                 nowPlaying && nowPlaying[0].backdrop_path
               })`,
             }}
-          />
-        </MainDetail>
+          >
+            <TitleWrap>
+              <Title>{nowPlaying && nowPlaying[0].title}</Title>
+              <SubTitle>
+                {nowPlaying && nowPlaying[0].overview.slice(0, 50) + "..."}
+              </SubTitle>
+              <More onClick={onClickMore}>더 보기</More>
+            </TitleWrap>
+          </Main>
+
+          <MainDetail height={showDetail}>
+            <Item>
+              <DetailTitle>{nowPlaying && nowPlaying[0].title}</DetailTitle>
+              <Vote>평점 : {nowPlaying[0].vote_average} 점</Vote>
+              <Release>개봉일 : {nowPlaying[0].release_date}</Release>
+              <Desc>{nowPlaying[0].overview}</Desc>
+              <Link to={`/detail/${nowPlaying[0].id}`}>
+                <MoreVideo>예고편 보기</MoreVideo>
+              </Link>
+            </Item>
+            <DetailBg
+              style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/original/${
+                  nowPlaying && nowPlaying[0].backdrop_path
+                })`,
+              }}
+            />
+          </MainDetail>
+
+          <Container>
+            <Content title={"현재 상영 영화"} movie={nowPlaying} />
+
+            <Content title={"개봉 예정 영화"} movie={upComing} />
+
+            <Content title={"인기 영화"} movie={popular} />
+          </Container>
+        </>
       )}
-
-      <Container>
-        <Content title={"현재 상영 영화"} movie={nowPlaying} />
-
-        <Content title={"개봉 예정 영화"} movie={upComing} />
-
-        <Content title={"인기 영화"} movie={popular} />
-      </Container>
     </div>
   );
 };

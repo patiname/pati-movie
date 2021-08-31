@@ -64,8 +64,12 @@ export const Content = ({ title, movie }) => {
               <Link className="bgLink" to={{ pathname: `/detail/${now.id}` }}>
                 <ConBg
                   style={{
-                    backgroundImage: `url(https://image.tmdb.org/t/p/original/${
-                      now && now.backdrop_path
+                    backgroundImage: `url(${
+                      now.backdrop_path
+                        ? `https://image.tmdb.org/t/p/original/${
+                            now && now.backdrop_path
+                          }`
+                        : "https://hacwon.kr/modules/board/m.skins/sketchbook5_DW/img/none280.gif"
                     })`,
                   }}
                 />
